@@ -9,12 +9,12 @@ const menuItems: MenuItems[] = [
   {
     name: 'Animation0101',
     icon: 'cube-outline',
-    component: 'Whatever',
+    component: 'Animation101Screen',
   },
   {
     name: 'Animation0202',
     icon: 'aperture-outline',
-    component: 'Estloy',
+    component: 'Animation102Screen',
   },
 ];
 
