@@ -1,21 +1,65 @@
 import React, {useState} from 'react';
-import {View, Switch, StyleSheet} from 'react-native';
+import {Switch, View, Platform, Text, StyleSheet} from 'react-native';
+import {CustomSwitch} from '../components/CustomSwitch';
 import {HeaderTitle} from '../components/HeaderTitle';
 
 export const SwitchScreen = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(!isEnabled);
+  const [state, setState] = useState({
+    isActive: true,
+    isHungry: false,
+    isHappy: true,
+  });
+
+  const {isActive, isHungry, isHappy} = state;
+
+  const cambio = (value: boolean, field: string) => {
+    setState({
+      ...state,
+      [field]: value,
+    });
+  };
 
   return (
     <View style={{marginHorizontal: 20}}>
       <HeaderTitle title="Switches" />
-      <Switch
-        trackColor={{false: '#D9D9DB', true: '#9c44b3'}}
-        thumbColor={isEnabled ? 'white' : '#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
+
+      <View style={styles.switchRow}>
+        <Text style={styles.switchText}>isActive</Text>
+        <CustomSwitch
+          isOn={isActive}
+          onChange={value => cambio(value, 'isActive')}
+        />
+      </View>
+
+      <View style={styles.switchRow}>
+        <Text style={styles.switchText}>isHungry</Text>
+        <CustomSwitch
+          isOn={isHungry}
+          onChange={value => cambio(value, 'isHungry')}
+        />
+      </View>
+
+      <View style={styles.switchRow}>
+        <Text style={styles.switchText}>isHappy</Text>
+        <CustomSwitch
+          isOn={isHappy}
+          onChange={value => cambio(value, 'isHappy')}
+        />
+      </View>
+
+      <Text style={styles.switchText}>{JSON.stringify(state, null, 5)}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  switchRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  switchText: {
+    fontSize: 25,
+  },
+});
