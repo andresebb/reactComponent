@@ -3,6 +3,7 @@ import {StyleSheet, View, Animated, Button, Easing} from 'react-native';
 
 export const Animation101Screen = () => {
   const opacity = useRef(new Animated.Value(0.4)).current;
+  const top = useRef(new Animated.Value(-100)).current;
 
   const fadeIn = () => {
     Animated.timing(opacity, {
@@ -10,6 +11,13 @@ export const Animation101Screen = () => {
       duration: 300,
       useNativeDriver: true,
     }).start(() => console.log('Animacion Termino'));
+
+    Animated.timing(top, {
+      toValue: 0,
+      duration: 800,
+      useNativeDriver: true,
+      easing: Easing.bounce,
+    }).start();
   };
   const fadeOut = () => {
     Animated.timing(opacity, {
@@ -24,8 +32,13 @@ export const Animation101Screen = () => {
       <Animated.View
         style={{
           ...styles.purpleBox,
-          opacity,
           marginBottom: 20,
+          opacity,
+          transform: [
+            {
+              translateY: top,
+            },
+          ],
         }}></Animated.View>
       <Button title={'Press Me'} onPress={fadeIn} />
       <Button title={'Press Me Out'} onPress={fadeOut} />
