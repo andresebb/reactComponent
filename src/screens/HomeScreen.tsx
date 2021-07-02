@@ -2,21 +2,8 @@ import React from 'react';
 import {View, Text, Button, FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatListMenuItem} from '../components/FlatListMenuItem';
-import {MenuItems} from '../interfaces/appInterfaces';
+import {menuItems} from '../data/MenuItems';
 import {styles} from '../theme/apptheme';
-
-const menuItems: MenuItems[] = [
-  {
-    name: 'Animation0101',
-    icon: 'cube-outline',
-    component: 'Animation101Screen',
-  },
-  {
-    name: 'Animation0202',
-    icon: 'aperture-outline',
-    component: 'Animation102Screen',
-  },
-];
 
 export const HomeScreen = ({navigation}: any) => {
   const renderHeader = () => {
