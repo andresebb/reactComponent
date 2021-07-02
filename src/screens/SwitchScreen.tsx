@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import {View, Switch, StyleSheet} from 'react-native';
+import {HeaderTitle} from '../components/HeaderTitle';
 
 export const SwitchScreen = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(!isEnabled);
 
   return (
-    <View style={styles.container}>
+    <View style={{marginHorizontal: 20}}>
+      <HeaderTitle title="Switches" />
       <Switch
         trackColor={{false: '#D9D9DB', true: '#9c44b3'}}
         thumbColor={isEnabled ? 'white' : '#f4f3f4'}
@@ -17,11 +19,3 @@ export const SwitchScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
