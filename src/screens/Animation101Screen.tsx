@@ -1,31 +1,10 @@
 import React, {useRef} from 'react';
 import {StyleSheet, View, Animated, Button, Easing} from 'react-native';
+import {useAnimation} from '../hooks/useAnimation';
 
 export const Animation101Screen = () => {
-  const opacity = useRef(new Animated.Value(0.4)).current;
-  const top = useRef(new Animated.Value(-100)).current;
-
-  const fadeIn = () => {
-    Animated.timing(opacity, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true,
-    }).start(() => console.log('Animacion Termino'));
-
-    Animated.timing(top, {
-      toValue: 0,
-      duration: 800,
-      useNativeDriver: true,
-      easing: Easing.bounce,
-    }).start();
-  };
-  const fadeOut = () => {
-    Animated.timing(opacity, {
-      toValue: 0.4,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
-  };
+  const {opacity, position, fadeIn, fadeOut, startMovingPosition} =
+    useAnimation();
 
   return (
     <View style={styles.container}>
@@ -36,11 +15,16 @@ export const Animation101Screen = () => {
           opacity,
           transform: [
             {
-              translateY: top,
+              translateY: position,
             },
           ],
         }}></Animated.View>
-      <Button title={'Press Me'} onPress={fadeIn} />
+      <Button
+        title={'Press Me'}
+        onPress={() => {
+          fadeIn(), startMovingPosition(100);
+        }}
+      />
       <Button title={'Press Me Out'} onPress={fadeOut} />
     </View>
   );
