@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, Text, Button, FlatList} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatListMenuItem} from '../components/FlatListMenuItem';
 import {HeaderTitle} from '../components/HeaderTitle';
 import {menuItems} from '../data/MenuItems';
 import {styles} from '../theme/apptheme';
 
-export const HomeScreen = ({navigation}: any) => {
+export const HomeScreen = () => {
   const itemSeparador = () => {
     return (
       <View

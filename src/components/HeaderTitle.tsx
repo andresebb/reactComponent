@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 interface Props {
-  title: string;
+  title?: string;
 }
 
 export const HeaderTitle = ({title}: Props) => {
