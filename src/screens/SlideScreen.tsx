@@ -1,6 +1,5 @@
-import React, {ButtonHTMLAttributes, useState} from 'react';
+import React, {useState} from 'react';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {} from 'react-native-gesture-handler';
 import {
   View,
   Dimensions,
@@ -14,6 +13,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useAnimation} from '../hooks/useAnimation';
 import {useRef} from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const {height, width} = Dimensions.get('screen');
 
@@ -44,6 +44,8 @@ const items: Slide[] = [
 export const SlideScreen = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const isVisible = useRef(false);
+
+  const navegation = useNavigation();
 
   const {fadeIn, opacity, fadeOut} = useAnimation();
 
@@ -79,7 +81,6 @@ export const SlideScreen = () => {
         sliderWidth={width}
         itemWidth={width}
         layout="default"
-        callbackOffsetMargin={100}
         onSnapToItem={index => {
           setActiveSlide(index);
           if (index === 2) {
@@ -134,7 +135,7 @@ export const SlideScreen = () => {
             }}
             onPress={() => {
               if (isVisible.current) {
-                console.log('gola');
+                navegation.navigate('HomeScreen');
               }
             }}>
             <View
