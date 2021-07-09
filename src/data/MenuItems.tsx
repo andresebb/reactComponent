@@ -51,4 +51,9 @@ export const menuItems: MenuItems[] = [
     icon: 'bicycle-outline',
     component: 'SlideScreen',
   },
+  {
+    name: 'Change Theme Screen',
+    icon: 'bicycle-outline',
+    component: 'ChangeThemeScreen',
+  },
 ];
