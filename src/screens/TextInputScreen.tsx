@@ -1,5 +1,4 @@
-import React from 'react';
-import {useState} from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   TextInput,
@@ -14,8 +13,11 @@ import {styles} from '../theme/apptheme';
 import {useForm} from '../hooks/useForm';
 import {CustomSwitch} from '../components/CustomSwitch';
 import {Text} from 'react-native';
+import {ThemeContext} from '../context/ThemeContext';
 
 export const TextInputScreen = () => {
+  const {theme} = useContext(ThemeContext);
+
   const {cambio, form} = useForm({
     name: '',
     email: '',
@@ -30,27 +32,39 @@ export const TextInputScreen = () => {
           <View style={styles.globalMargin}>
             <HeaderTitle title="Text Inputs" />
             <TextInput
-              style={stylesInput.inputStyle}
+              style={[
+                stylesInput.inputStyle,
+                {borderColor: theme.colors.primary, color: theme.colors.text},
+              ]}
               onChangeText={value => cambio(value, 'name')}
               autoCorrect={false}
               autoCapitalize="words"
               placeholder="Name"
             />
             <TextInput
-              style={stylesInput.inputStyle}
+              style={[
+                stylesInput.inputStyle,
+                {borderColor: theme.colors.primary, color: theme.colors.text},
+              ]}
               onChangeText={value => cambio(value, 'email')}
               keyboardType="email-address"
               placeholder="email"
             />
             <TextInput
-              style={stylesInput.inputStyle}
+              style={[
+                stylesInput.inputStyle,
+                {borderColor: theme.colors.primary, color: theme.colors.text},
+              ]}
               onChangeText={value => cambio(value, 'phone')}
               keyboardType="phone-pad"
               placeholder="phone"
             />
 
             <View style={stylesInput.switchRow}>
-              <Text style={stylesInput.switchText}>Subscribe</Text>
+              <Text
+                style={[stylesInput.switchText, {color: theme.colors.text}]}>
+                Subscribe
+              </Text>
               <CustomSwitch
                 isOn={form.isSubscribe}
                 onChange={value => cambio(value, 'isSubscribe')}

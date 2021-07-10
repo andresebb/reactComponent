@@ -1,5 +1,13 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+
+import {
+  NavigationContainer,
+  Theme,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
+
 import {HomeScreen} from '../screens/HomeScreen';
 import {SettingScreen} from '../screens/SettingScreen';
 import {Animation102Screen} from '../screens/Animation102Screen';
@@ -13,31 +21,16 @@ import {ModalScreen} from '../screens/ModalScreen';
 import {InfiniteScrollScreen} from '../screens/InfiniteScrollScreen';
 import {SlideScreen} from '../screens/SlideScreen';
 import {ChangeThemeScreen} from '../screens/ChangeThemeScreen';
-import {
-  NavigationContainer,
-  Theme,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
+import {useContext} from 'react';
+import {ThemeContext} from '../context/ThemeContext';
 
 const Stack = createStackNavigator();
 
 export const StackNavigation = () => {
-  const customTheme: Theme = {
-    dark: true,
-    colors: {
-      ...DefaultTheme.colors,
-      // primary: '',
-      // background: '',
-      // card: '',
-      // text: '',
-      // border: '',
-      // notification: '',
-    },
-  };
+  const {theme} = useContext(ThemeContext);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,

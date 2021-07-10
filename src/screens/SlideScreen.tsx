@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {
   View,
@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useAnimation} from '../hooks/useAnimation';
 import {useRef} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {ThemeContext} from '../context/ThemeContext';
 
 const {height, width} = Dimensions.get('screen');
 
@@ -42,6 +43,7 @@ const items: Slide[] = [
 ];
 
 export const SlideScreen = () => {
+  const {theme} = useContext(ThemeContext);
   const [activeSlide, setActiveSlide] = useState(0);
   const isVisible = useRef(false);
 
@@ -67,8 +69,12 @@ export const SlideScreen = () => {
           }}
         />
 
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.desc}</Text>
+        <Text style={{...styles.title, color: theme.colors.primary}}>
+          {item.title}
+        </Text>
+        <Text style={[styles.subtitle, {color: theme.colors.text}]}>
+          {item.desc}
+        </Text>
       </View>
     );
   };
@@ -111,7 +117,7 @@ export const SlideScreen = () => {
             height: 20,
             borderRadius: 18,
             marginHorizontal: 2,
-            backgroundColor: '#5856D6',
+            backgroundColor: `${theme.colors.primary}`,
           }}
           inactiveDotStyle={
             {
@@ -128,7 +134,7 @@ export const SlideScreen = () => {
           }}>
           <TouchableOpacity
             style={{
-              backgroundColor: '#5856D6',
+              backgroundColor: `${theme.colors.primary}`,
               width: 130,
               borderRadius: 20,
               marginRight: 20,
