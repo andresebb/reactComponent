@@ -1,5 +1,6 @@
 import React, {createContext, useReducer, useState} from 'react';
-import {ThemeState, themeReducer, lightTheme} from './ThemeReducer';
+import {useColorScheme} from 'react-native';
+import {ThemeState, themeReducer, lightTheme, darkTheme} from './ThemeReducer';
 
 interface ThemeContextProps {
   theme: ThemeState;
@@ -12,7 +13,12 @@ interface ThemeContextProps {
 export const ThemeContext = createContext({} as ThemeContextProps);
 
 export const ThemeProvider = ({children}: any) => {
-  const [theme, dispatch] = useReducer(themeReducer, lightTheme);
+  const colorScheme = useColorScheme();
+
+  const [theme, dispatch] = useReducer(
+    themeReducer,
+    colorScheme === 'dark' ? darkTheme : lightTheme,
+  );
 
   //Mantener estado del switch change theme
   const [dark, setDark] = useState(false);

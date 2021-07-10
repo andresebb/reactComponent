@@ -53,7 +53,7 @@ export const menuItems: MenuItems[] = [
   },
   {
     name: 'Change Theme Screen',
-    icon: 'bicycle-outline',
+    icon: 'bulb-outline',
     component: 'ChangeThemeScreen',
   },
 ];
